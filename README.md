@@ -1,5 +1,7 @@
 # CheckList
 
+<img width="1520" height="502" alt="image" src="https://github.com/user-attachments/assets/3a341284-3962-4e8d-9d43-a91a0cf437ab" />
+
 A digital daily checklist tracker inspired by traditional paper formats, designed to help you build habits and track your daily tasks efficiently.
 
 🔗 **Live Demo:** [https://checklistforeveryday.netlify.app/](https://checklistforeveryday.netlify.app/)
