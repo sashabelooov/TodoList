@@ -4,7 +4,7 @@
 
 A digital daily checklist tracker inspired by traditional paper formats, designed to help you build habits and track your daily tasks efficiently.
 
-🔗 **Live Demo:** [https://checklistforeveryday.netlify.app/](https://checklistforeveryday.netlify.app/)
+
 
 ## 📹 Preview
 
