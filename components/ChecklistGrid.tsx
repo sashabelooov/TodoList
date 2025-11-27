@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ChecklistItem, DayStatus } from '../types';
 import { Check, X, Plus, Calendar, Edit2, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -21,7 +21,21 @@ const INITIAL_ITEMS: ChecklistItem[] = [
 ];
 
 export const ChecklistGrid: React.FC = () => {
-  const [items, setItems] = useState<ChecklistItem[]>(INITIAL_ITEMS);
+  // Load items from local storage if available, otherwise use INITIAL_ITEMS
+  const [items, setItems] = useState<ChecklistItem[]>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const savedData = localStorage.getItem('checklist_app_data');
+        if (savedData) {
+          return JSON.parse(savedData);
+        }
+      } catch (error) {
+        console.error("Failed to load data from local storage", error);
+      }
+    }
+    return INITIAL_ITEMS;
+  });
+
   const [newItemName, setNewItemName] = useState('');
   const [currentDate, setCurrentDate] = useState(new Date());
   
@@ -30,6 +44,11 @@ export const ChecklistGrid: React.FC = () => {
   const [editTitle, setEditTitle] = useState('');
 
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Save items to local storage whenever they change
+  useEffect(() => {
+    localStorage.setItem('checklist_app_data', JSON.stringify(items));
+  }, [items]);
 
   const getMonthYearKey = (date: Date) => {
     return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
